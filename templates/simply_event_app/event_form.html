@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block title %}
+    <title>Create Event - Simply Event</title>
+{% endblock %}
+
+{% block content %}
+    <div class="col-md-6 mr-auto ml-auto">
+        <h1>Create Event</h1>
+        <p>{{ form.errors }}</p>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.name.label }}
+            {{ form.name }}
+
+            {{ form.description.label }}
+            {{ form.description }}
+
+            {{ form.location.label }}
+            {{ form.location }}
+
+            <div class="form-row mt-2">
+
+                <div class="input-group col date" id="start_date_picker" data-target-input="nearest">
+                    {#                    {{ form.start_date.label }}#}
+                    {{ form.start_date }}
+                    <div class="input-group-append" data-target="#start_date_picker" data-toggle="datetimepicker">
+                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                    </div>
+                </div>
+
+
+                <div class="input-group col date" id="end_date_picker" data-target-input="nearest">
+                    {#                    {{ form.end_date.label }}#}
+                    {{ form.end_date }}
+                    <div class="input-group-append" data-target="#end_date_picker" data-toggle="datetimepicker">
+                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-2">
+              {{ form.image.label }}
+            {{ form.image }}
+            </div>
+
+
+            <div class="mt-2">
+                {{ form.is_public }}
+                {{ form.is_public.label }}
+            </div>
+
+            <input class="btn btn-primary mt-3 float-right" type="submit">
+        </form>
+    </div>
+
+    <script>
+        $(function () {
+            $("#start_date_picker").datetimepicker({
+                format: 'MM/DD/YYYY HH:mm',
+            });
+        });
+        $(function () {
+            $("#end_date_picker").datetimepicker({
+                format: 'MM/DD/YYYY HH:mm',
+            });
+        });
+
+    </script>
+{% endblock %}

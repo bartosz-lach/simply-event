@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Simply Event</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-item nav-link" href="{% url 'simply_event_app:event_list' %}">Public Events</a>
+            </li>
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-item nav-link" href="{% url 'simply_event_app:event_create' %}">Create Event</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-item nav-link" href="{% url 'simply_event_app:owner_event_list' %}">My Events</a>
+            </li>
+            {% endif %}
+
+        </ul>
+    </div>
+
+    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+
+        <ul class="navbar-nav ml-auto">
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="#">{{ user.username }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'simply_event_app:logout_user' %}">Logout</a>
+                </li>
+            {% else %}
+                <li class="nav-item"><a class="nav-item nav-link float-right"
+                                        href="{% url 'simply_event_app:registration_page' %}">Registration</a></li>
+                <li class="nav-item"><a class="nav-item nav-link float-right"
+                                        href="{% url 'simply_event_app:login_page' %}">Login</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>

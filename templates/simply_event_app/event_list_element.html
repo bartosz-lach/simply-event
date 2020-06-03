@@ -1,0 +1,13 @@
+<div>
+    <div class="card m-3">
+    <div class="card-body">
+        <p class="card-title h3">{{ event.name }}</p>
+        <p class="card-subtitle mb-2 text-muted h5">
+            Start Date: <u>{{ event.start_date|date:'d.m.y H:i' }}</u>
+            {% if event.end_date %}
+                | End Date: <u>{{ event.end_date|date:'d.m.y H:i' }}</u>
+        {% endif %} </p>
+        <p class="card-text">{{ event.description|truncatewords:30 }}</p>
+        <a href="{% url 'simply_event_app:event_detail' event.id %}" class="btn btn-primary float-right">Go To Event</a>
+    </div>
+</div>

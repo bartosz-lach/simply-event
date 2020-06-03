@@ -1,0 +1,20 @@
+<h4>Attendees:</h4>
+{% for guest in guests %}
+    <ul class="list-group">
+        <li class="list-group-item mt-2">
+            <h6>{{ guest.name }}</h6>
+            {% if guest.delay %}
+                <p>Delay: {{ guest.delay }} minutes | Arrival time: {{ guest.time_with_delay|date:'H:i' }}</p>
+            {% endif %}
+            {% if is_owner %}
+                <form method="POST" action="{% url "simply_event_app:guest_delete" guest.id %}">
+                    {% csrf_token %}<input class="btn btn-danger float-right" type="submit" value="DELETE">
+                </form>
+            {% endif %}
+
+        </li>
+
+    </ul>
+
+
+{% endfor %}
